@@ -1,3 +1,5 @@
+import type { Book } from "../generated/prisma/browser";
+
 import './main.scss'
 
 import { lerp, lerp_hex } from './api/lerp'
@@ -124,7 +126,7 @@ const App = async () => {
   app_el.append(main)
 
   let cur_page = -1
-  const load_page = async (target_page: number = 0) => {
+  const load_page = async (target_page: number = 0, book_data?: Book) => {
     console.log(target_page);
     if (cur_page == target_page) return
     cur_page = target_page
@@ -132,12 +134,7 @@ const App = async () => {
     main.append(
       cur_page === 0
         ? MainPage(load_page)
-        : BookPage(
-            'The Masterful Sword',
-            'A gripping tale of adventure and intrigue set in a world of swords and sorcery. Follow the hero through trials and epic battles as he seeks his destiny.',
-            29,
-            'Masterless Sword',
-          )
+        : BookPage(book_data)
       )
   }
   load_page()
