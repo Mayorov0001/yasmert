@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import './main.scss'
 
 import { lerp, lerp_hex } from './api/lerp'
